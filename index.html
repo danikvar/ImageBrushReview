@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Your Project Name</title>
-<meta property="og:title" content=Your Project Name" />
-<meta name="twitter:title" content="Your Project Name" />
+<title>Images Are All You Need: A Look at ImageBrush</title>
+<meta property="og:title" content="Images Are All You Need: A Look at ImageBrush" />
+<meta name="twitter:title" content="Images Are All You Need: A Look at ImageBrush" />
 <meta name="description" content="Your project about your cool topic described right here." />
 <meta property="og:description" content="Your project about your cool topic described right here." />
 <meta name="twitter:description" content="Your project about your cool topic described right here." />
@@ -22,8 +22,7 @@
 <div class="nd-pageheader">
  <div class="container">
  <h1 class="lead">
- <nobr class="widenobr">Your Project Name</nobr>
- <nobr class="widenobr">For CS 7150</nobr>
+ <nobr class="widenobr">Images Are All You Need: A Look at ImageBrush</nobr>
  </h1>
  </div>
 </div><!-- end nd-pageheader -->
@@ -31,32 +30,103 @@
 <div class="container">
 <div class="row">
 <div class="col justify-content-center text-center">
-<h2>An Analysis of [papername]</h2>
-<p>Describe the paper and the big question about it that interests you.</p>
+<h2>An Analysis of 'ImageBrush: Learning Visual In-Context Instructions for Exemplar-Based Image Manipulation'</h2>
+    <p> As the title of the paper implies, ImageBrush is a novel diffusion-based image genertation framework.
+        For modern image generation networks it is common to utilize text input to with, like with a CLIP model, to
+        guide the generation of an image. This approach however comes with the inherent issue of a modality gap, where
+        it is difficult to accurately describe exactly what the user wants created. ImageBrush bridges that modality gap
+        by instead utilizing exemplar images as instructions an copying the difference between the two. This allows
+        for seemingly outstanding results in various task like image fill, generation, and transformation.
+    </p>
 </div>
 </div>
 <div class="row">
 <div class="col">
 
-<h2>Literature Review; Biography; Social Impact; Industry Applications; Follow-on Research; and Peer-Review</h2>
+<h2>Backgroundd</h2>
+    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
 
-<p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.
-</p>
+<h2> Biography</h2>
+    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
 
-<p>Optionally, in addition to a reading-based analysis, implement the ideas of the paper in code, and report on your findings.
-</p>
+<h2>Social Impact</h2>
+    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
+
+<h2> Industry Applications</h2>
+    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
+
+<h2>Peer-Review</h2>
+    <h3>Summary and Method Breakdown:</h3>
+        <p>The authors build upon previous work with image synthesis through CLIP-guided diffusion models and image translation tasks with
+            conditional GANs to create a new Exemplar-Based Image Manipulation framework called ImageBrush. To avoid the inherent modality gap that
+            comes from text-based image generation the authors instead chose to use image-based instruction using a before and after image to specify a
+            transformation to a query image. For such a task the authors devised a generative model that tackles both pairwise visual instruction understanding
+            and image synthesis in a unified manner. Necessary to this goal is capturing both the inter-image pair and the intra-image pair relations. Unlike with
+            language, relationships in image space are not sequential and contain information dispersed across their spatial dimensions, so the authors utilize a
+            “Progressive-in-Painting” strategy. To establish the intra-correlations among exemplar image transformations and their inter-correlation with the query image,
+            they utilize a grid-like image as input. This grid concatenates a manipulation example and a target query. The top two items in this grid from left to right would
+            be the exemplar images (E, E’); the bottom left would be the query image (I); and the last grid item would be random noise (M) that is then filled using a diffusion
+            process to produce the transformed query image (I’). Essentially the authors start with a grid-like image {E, E’, I, M} and attempt to recover the image {E, E’, I, I’}.
+Like other Latent Diffusion approaches the authors utilize cross-attention with a Denoising UNet to condition the input, I, on the pair of exemplar images {E, E’}.
+            The authors noted however that capturing detailed information from instruction images through cross-attention alone is challenging, so the authors also
+            utilize self-attention to learn their low-level context using a self-attention mechanism over the grid of inputs. By establishing spatial correspondence
+            within image channels, this design enables the ImageBrush model to attentively process features within each channel and effectively capture their interdependencies.
+            So essentially the images are encoded, concatenated, passed through multiple transformer layers for the prompt encoder, and then finally passed through the modified
+            UNet to iteratively denoise the image. The authors also utilize a modified conditional predicted noise to accomplish this goal:</p>
+        <img src="cond_noise.jpg" alt="Conditional Noise Formula">
+        <p>This conditioned predicted noise modifies the original predicted noise, epsilon_theta(x_t, null), (noise predicted without attending to
+            the exemplars) to more closely match the guidance signal, epsilon_theta(x_t, c), with guidance scale, w, and provided conditions, c.
+            While the conditions here are generally the exemplar images, the authors also allow for the use of multimodal
+            input such as bounding box user instructions and text descriptions to further improve the diffusion process.</p>
+    <h3> Strengths and Weaknesses: </h3>
+        <p>Strengths: Great results that seem to outperform SOTA models in exemplar image generation. Concise and relatively easy-to-understand paper
+            The creation of the new prompt and image fidelity evaluation metrics may be important for the evaluation of future models in such a relatively new field.
+            Weaknesses: More developed/in-depth discussion about the unique aspects of the model architecture would be desirable.
+            There is relatively little discussion of the self-attention aspects of the UNet and specific unique improvements over previous work, though the results do seem strong.
+            Evaluation of the model is a little weak. There is some quantitative comparison with Instruct-Pix2Pix, yet a different comparison for TSAM and CoCosNet.
+            The authors also utilize a qualitative comparison with pix2pix and SDEdit, rather than either of the other two models they used before.
+            While it showed seemingly good results this small qualitative comparison could also be very cherry-picked.
+            Created a new evaluation metric but did not use it to compare to any other models
+        </p>
+
+    <h3> Questions and Limitations:</h3>
+        <p>Addressed some limitations, but a deeper discussion of limitations would be preferred.
+            They briefly touched upon how large differences in the exemplar images lead to issues generating a new image and how the model had trouble with fine details.
+            Would like further testing and comparison with different models and more discussion of how exemplar similarity affects output results.
+            A bit more discussion on how the self-attention was incorporated with the cross-attention would also be nice.
+        </p>
+    <h3>Scores</h3>
+        <p>Soundness: 3 - Could use more evaluation along with a stronger explanation of theoretical principles in certain parts.
+            A deeper dive into the limitations of the models would be preferred. More discussion of the model architecture and how the addition of
+            self-attention improves the model compared to previous work would be nice.
+            Presentation: 4 - Clear and Concise!
+            Contribution: 3 - Could be a strong contribution
+            Overall: 7 -Accept: Almost wanted to make this a weak accept because of the evaluation but otherwise an interesting paper.
+            Could use more discussion of specific architectural improvements, but the results seem promising and it could lead to more
+            great research.
+
+        </p>
+
+
+
+<h2> Follow-Up Research</h2>
+    <p>Models blending text prompting, image-examplars, and user input are a promising step forward in image generation instructions.
+        The authors noted issues when there significant disparities between the querya nd instruction and difficulties handling intricate details,
+        which would merit some future work to improve. More work in different blends of modalities such as text, user input, and
+        images could lead to great breakgthroughs in image generation and transformation.</p>
+
 
 <h3>References</h3>
 
-<p><a name="bottou-1990">[1]</a> <a href="https://papers.baulab.info/Bottou-1990.pdf"
-  >L&eacute;on Bottou and Patrick Gallinari.
-  <em>A framework for the cooperation of learning algorithms.</em></a>
-  Advances in neural information processing systems 3 (1990).
+<p><a name="ImageBrush">[1]</a> <a href="https://papers.baulab.info/Bottou-1990.pdf"
+  >Yasheng Sun, Yifan Yang, Houwen Peng, Yifei Shen, Yuqing Yang, Han Hu, Lili Qiu, Hideki Koike
+  <em>ImageBrush: Learning Visual In-Context Instructions for Exemplar-Based Image Manipulation</em></a>
+  Thirty-seventh Conference on Neural Information Processing Systems(2023).
 </p>
 
 <h2>Team Members</h2>
                                                    
-<p>Make sure to list here is who is on the team.</p>
+<p>Daniel Varivoda and Tanmay Gadgil</p>
 
   
 </div><!--col-->
