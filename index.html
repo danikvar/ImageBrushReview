@@ -16,6 +16,25 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images with Text</title>
+  <style>
+    /* Optional: Add some styling to improve the appearance */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .image-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .image-container img {
+      width: 100px; /* Adjust the width as needed */
+      margin-right: 10px;
+    }
+  </style>
 
 </head>
 <body class="nd-docs">
@@ -30,7 +49,7 @@
 <div class="container">
 <div class="row">
 <div class="col justify-content-center text-center">
-<h2>An Analysis of 'ImageBrush: Learning Visual In-Context Instructions for Exemplar-Based Image Manipulation'</h2>
+<h2>An Analysis of ImageBrush: Learning Visual In-Context Instructions for Exemplar-Based Image Manipulation'</h2>
     <p> As the title of the paper implies, ImageBrush is a novel diffusion-based image genertation framework.
         For modern image generation networks it is common to utilize text input to with, like with a CLIP model, to
         guide the generation of an image. This approach however comes with the inherent issue of a modality gap, where
@@ -44,19 +63,87 @@
 <div class="col">
 
 <h2>Background</h2>
-    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
+    <p>There have been several advances in image generation tasks over the last couple of years. 
+        Models like CLIP enable efficient and expressive embedding for combining image and text modalities. 
+        As a result there has been an explosion image generation models that can use text to guide the image generation process. 
+        This work tries to use images instead to inform the generation process. 
+        The goal is to use other images as exemplar images that the model uses to either generate a new image or fill in an existing one.</p> 
+        
+        <p> To achieve this the authors propose a set of novel techniques:
+            <ol>
+                <li>They introduced a novel image manipulation protocol that can perform numerous operations using an in-context approach along with a metric 
+                    to assess the quality of image manipulations.</li>
+                    <li>They built a diffusion based framework for image generation along with a hybrid context injection strategy to enable language instructions along with image exemplars.</li>
+                    <li>Extensive experimentation proves that the images can succesfully be created from exemplars</li>
+
+            </ol> 
+        </p>
 
 <h2> Biography</h2>
-    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
+    <p>
+        <div class="image-container">
+            <img src="images/Yasheng Sun.png" alt="Image 1">
+            <p> <b>Yasheng Sun: </b> Student of Computer Science, Tokyo Tech University, Has previously worked on graph neural networks, speech recognition and Image Processing</p>
+        </div>
+        <div class="image-container">
+            <img src="images/Yifan Yang.jpg" alt="Image 1">
+            <p> <b>Yifan Yang: </b> Researcher at the Microsoft Asia Research Center. Computer vision for video and Efficient Networks</p>
+        </div>
+        <div class="image-container">
+            <img src="images/Houwen Peng.jpg" alt="Image 1">
+            <p> <b>Houwen Peng: </b> Senior Researcher at Microsoft Research Asia, works on tiny and efficient deep learning, video object tracking, segmentation and detection, vision transformer, neural architecture search, model compression, vision-language intelligence, saliency detection</p>
+        </div>
+        <div class="image-container">
+            <img src="images/Yifei Shen.jpg" alt="Image 1">
+            <p> <b>Yifei Shen: </b> Researcher at Microsoft Research Asia, works on  mean-field asymptotics in machine learning and networking; (2) inductive bias in neural architectures.</p>
+        </div>
+        <div class="image-container">
+            <img src="images/Lili Qiu.png" alt="Image 1">
+            <p> <b>Lili Qiu: </b> Assistant Director at Microsoft Research Asia. Works on deep learning for networking</p>
+        </div>
+        <div class="image-container">
+            <img src="images/Han Hu.jpg" alt="Image 1">
+            <p> <b>Han Hu: </b> Principal Researcher at Microsoft Research Asia, Worked on the SWIN Transformer, and has made contributions to deformable neural networks
+            </p>
+        </div>
+        <div class="image-container">
+            <img src="images/Hideki Koike.jpg" alt="Image 1">
+            <p> <b>Hideki Koike: </b> Professor at University of Tokyo</p>
+        </div>
+
+    </p>
 
 <h2>Social Impact</h2>
     <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
 
 <h2> Industry Applications</h2>
-    <p>Just as we have done in the role-playing exercise, analyze the paper from all perspectives.</p>
+    <p>
+        We have identified numerous industry applications for this work
+        <ul>
+            <li>Such a model can have impact in a diverse set of industries</li>
+            <li> potential application is in the Visual Effects for Film and television. 
+                Digitally editing frames is an expensive, manual and time consuming process. 
+                This process can be used to develop workflows where artists can edit certain frames and have the rest of the frames filled in using this method</li>
+            <li>This application can be embedded in applications like Adobe Photoshop as a way to allow users to edit images using image modalities</li>
+            <li>This can be a stand alone tool where users can provide both image and text prompts to edit images and video.</li>
+                
+        </ul>
+    </p>
 
-<h2>Peer-Review</h2>
-    <h3>Summary and Method Breakdown:</h3>
+<h2>Academic Impact</h2>
+    <p>
+        This work has the potential to be investigated further in an academic setting as well. The following be considered:
+        <ul>
+            <li> A better embedding system to create image embeddings that are fed into the U-Net.</li>
+            <li>Investigate novel techniques to inject context into a neural network model. </li>
+            <li>Investigate methods to handle cases when the prompt and the image are far apart.</li>
+            <li>Improve techniques to handle finer details and small objects.</li>
+
+        </ul>
+    </p>
+
+
+    <h2>Summary and Method Breakdown:</h2>
         <p>The authors build upon previous work with image synthesis through CLIP-guided diffusion models and image translation tasks with
             conditional GANs to create a new Exemplar-Based Image Manipulation framework called ImageBrush. To avoid the inherent modality gap that
             comes from text-based image generation the authors instead chose to use image-based instruction using a before and after image to specify a
@@ -78,6 +165,7 @@ Like other Latent Diffusion approaches the authors utilize cross-attention with 
             the exemplars) to more closely match the guidance signal, epsilon_theta(x_t, c), with guidance scale, w, and provided conditions, c.
             While the conditions here are generally the exemplar images, the authors also allow for the use of multimodal
             input such as bounding box user instructions and text descriptions to further improve the diffusion process.</p>
+    <h2>Peer-Review</h2>
     <h3> Strengths and Weaknesses: </h3>
         <p>Strengths: Great results that seem to outperform SOTA models in exemplar image generation. Concise and relatively easy-to-understand paper
             The creation of the new prompt and image fidelity evaluation metrics may be important for the evaluation of future models in such a relatively new field.
@@ -96,15 +184,17 @@ Like other Latent Diffusion approaches the authors utilize cross-attention with 
             A bit more discussion on how the self-attention was incorporated with the cross-attention would also be nice.
         </p>
     <h3>Scores</h3>
-        <p>Soundness: 3 - Could use more evaluation along with a stronger explanation of theoretical principles in certain parts.
+        <p>
+            <ul> 
+                <li>Soundness: 3 - Could use more evaluation along with a stronger explanation of theoretical principles in certain parts.
             A deeper dive into the limitations of the models would be preferred. More discussion of the model architecture and how the addition of
-            self-attention improves the model compared to previous work would be nice.
-            Presentation: 4 - Clear and Concise!
-            Contribution: 3 - Could be a strong contribution
-            Overall: 7 -Accept: Almost wanted to make this a weak accept because of the evaluation but otherwise an interesting paper.
+            self-attention improves the model compared to previous work would be nice.</li>
+            <li>Presentation: 4 - Clear and Concise!</li>
+            <li>Contribution: 3 - Could be a strong contribution</li>
+            Overall: 7 - Accept: Almost wanted to make this a weak accept because of the evaluation but otherwise an interesting paper.
             Could use more discussion of specific architectural improvements, but the results seem promising and it could lead to more
             great research.
-
+            </ul>
         </p>
 
 
