@@ -65,7 +65,7 @@
 <h2>Background</h2>
     <p>There have been several advances in image generation tasks over the last couple of years. 
         Models like CLIP enable efficient and expressive embedding for combining image and text modalities. 
-        As a result there has been an explosion image generation models that can use text to guide the image generation process. 
+        As a result, there has been an explosion of image generation models that can use text to guide the image generation process. 
         This work tries to use images instead to inform the generation process. 
         The goal is to use other images as exemplar images that the model uses to either generate a new image or fill in an existing one.</p> 
         
@@ -73,8 +73,8 @@
             <ol>
                 <li>They introduced a novel image manipulation protocol that can perform numerous operations using an in-context approach along with a metric 
                     to assess the quality of image manipulations.</li>
-                    <li>They built a diffusion based framework for image generation along with a hybrid context injection strategy to enable language instructions along with image exemplars.</li>
-                    <li>Extensive experimentation proves that the images can succesfully be created from exemplars</li>
+                    <li>They built a diffusion-based framework for image generation along with a hybrid context injection strategy to enable language instructions along with image exemplars.</li>
+                    <li>Extensive experimentation proves that the images can successfully be created from exemplars</li>
 
             </ol> 
         </p>
@@ -87,7 +87,7 @@
         </div>
         <div class="image-container">
             <img src="images/Yifan Yang.jpg" alt="Image 1">
-            <p> <b>Yifan Yang: </b> Researcher at the Microsoft Asia Research Center. Computer vision for video and Efficient Networks</p>
+            <p> <b>Yifan Yang: </b> Researcher at the Microsoft Asia Research Center. Has previously worked on Computer vision for video and Efficient Networks</p>
         </div>
         <div class="image-container">
             <img src="images/Houwen Peng.jpg" alt="Image 1">
@@ -95,7 +95,7 @@
         </div>
         <div class="image-container">
             <img src="images/Yifei Shen.jpg" alt="Image 1">
-            <p> <b>Yifei Shen: </b> Researcher at Microsoft Research Asia, works on  mean-field asymptotics in machine learning and networking; (2) inductive bias in neural architectures.</p>
+            <p> <b>Yifei Shen: </b> Researcher at Microsoft Research Asia, works on mean-field asymptotics in machine learning and networking; (2) inductive bias in neural architectures.</p>
         </div>
         <div class="image-container">
             <img src="images/Lili Qiu.png" alt="Image 1">
@@ -114,25 +114,25 @@
     </p>
 
 <h2>Social Impact</h2>
-    <p>Just as with many current image generation techniques this archtiecture is prone to potential abuse and the spreading of misinformation. It could potentially be used
-    to create deepfakes of trusted public figures or spread misinformation by doctoring images. The quality of the transformation could be used to transform a benign image 
-    into the aftermath of an unrelated tragedy, so this technology must be monitored carefully. As image generation capability becomes more detailed and powerful in its 
-    generality, we must ensure that this technology is not being used for malicious purposes.
+    <p>Just as with many current image-generation techniques, this architecture is prone to potential abuse and the spreading of misinformation. It could potentially be used
+        to create deepfakes of trusted public figures or spread misinformation by doctoring images. The quality of the transformation could be used to transform a benign image 
+        into the aftermath of an unrelated tragedy, so this technology must be monitored carefully. As image generation capability becomes more detailed and powerful in its 
+        generality, we must ensure that this technology is not being used for malicious purposes.
     </p>
 
 <h2> Industry Applications</h2>
-    <p>
-        We have identified numerous industry applications for this work
-        <ul>
-            <li>Such a model can have impact in a diverse set of industries</li>
-            <li> potential application is in the Visual Effects for Film and television. 
-                Digitally editing frames is an expensive, manual and time consuming process. 
-                This process can be used to develop workflows where artists can edit certain frames and have the rest of the frames filled in using this method</li>
-            <li>This application can be embedded in applications like Adobe Photoshop as a way to allow users to edit images using image modalities</li>
-            <li>This can be a stand alone tool where users can provide both image and text prompts to edit images and video.</li>
-                
-        </ul>
-    </p>
+<p>
+    We have identified numerous industry applications for this work
+    <ul>
+        <li>Such a model can have an impact in a diverse set of industries</li>
+        <li> potential application is in the Visual Effects for Film and Television. 
+            Digitally editing frames is an expensive, manual, and time-consuming process. 
+            This process can be used to develop workflows where artists can edit certain frames and have the rest of the frames filled in using this method</li>
+        <li>This application can be embedded in applications like Adobe Photoshop as a way to allow users to edit images using image modalities</li>
+        <li>This can be a stand-alone tool where users can provide both image and text prompts to edit images and videos.</li>
+            
+    </ul>
+</p>
 
 <h2>Academic Impact</h2>
     <p>
@@ -147,42 +147,67 @@
     </p>
 
 
-    <h2>Summary and Method Breakdown:</h2>
-        <p>The authors build upon previous work with image synthesis through CLIP-guided diffusion models and image translation tasks with
-            conditional GANs to create a new Exemplar-Based Image Manipulation framework called ImageBrush. To avoid the inherent modality gap that
-            comes from text-based image generation the authors instead chose to use image-based instruction using a before and after image to specify a
-            transformation to a query image. For such a task the authors devised a generative model that tackles both pairwise visual instruction understanding
-            and image synthesis in a unified manner. Necessary to this goal is capturing both the inter-image pair and the intra-image pair relations. Unlike with
-            language, relationships in image space are not sequential and contain information dispersed across their spatial dimensions, so the authors utilize a
-            <q>Progressive-in-Painting</q> strategy. To establish the intra-correlations among exemplar image transformations and their inter-correlation with the query image,
-            they utilize a grid-like image as input. This grid concatenates a manipulation example and a target query. The top two items in this grid from left to right would
-            be the exemplar images (E, E&#8217;); the bottom left would be the query image (I); and the last grid item would be random noise (M) that is then filled using a diffusion
-            process to produce the transformed query image (I&#8217;). Essentially the authors start with a grid-like image {E, E&#8217;, I, M} and attempt to recover the image {E, E&#8217;, I, I&#8217;}.</p>
+<h2>Summary:</h2>
+<h3>Methods</h3>
+<p>The authors build upon previous work with image synthesis through CLIP-guided diffusion models and image translation tasks with
+    conditional GANs to create a new Exemplar-Based Image Manipulation framework called ImageBrush. To avoid the inherent modality gap that
+    comes from text-based image generation the authors instead chose to use image-based instruction using a before and after image to specify a
+    transformation to a query image. For such a task the authors devised a generative model that tackles both pairwise visual instruction understanding
+    and image synthesis in a unified manner. Necessary to this goal is capturing both the inter-image pair and the intra-image pair relations. Unlike with
+    language, relationships in image space are not sequential and contain information dispersed across their spatial dimensions, so the authors utilize a
+    <q>Progressive-in-Painting</q> strategy. To establish the intra-correlations among exemplar image transformations and their inter-correlation with the query image,
+    they utilize a grid-like image as input. This grid concatenates a manipulation example and a target query. The top two items in this grid from left to right would
+    be the exemplar images (E, E&#8217;); the bottom left would be the query image (I); and the last grid item would be random noise (M) that is then filled using a diffusion
+    process to produce the transformed query image (I&#8217;). Essentially the authors start with a grid-like image {E, E&#8217;, I, M} and attempt to recover the image {E, E&#8217;, I, I&#8217;}.</p>
 
-            <img src="images/fig2.jpg" alt="Model Architecture" style="width:500px;height:600px;">
-        <p>Like other Latent Diffusion approaches the authors utilize cross-attention with a Denoising UNet to condition the input, I, on the pair of exemplar images {E, E&#8217;}.
-            The authors noted however that capturing detailed information from instruction images through cross-attention alone is challenging, so the authors also
-            utilize self-attention to learn their low-level context using a self-attention mechanism over the grid of inputs. By establishing spatial correspondence
-            within image channels, this design enables the ImageBrush model to attentively process features within each channel and effectively capture their interdependencies.</p>
+    <center><img src="images/fig2.jpg" alt="Model Architecture" style="width:800px;height:600px;"></center>
+<p>Like other Latent Diffusion approaches the authors utilize cross-attention with a Denoising UNet to condition the input, I, on the pair of exemplar images {E, E&#8217;}.
+    The authors noted however that capturing detailed information from instruction images through cross-attention alone is challenging, so the authors also
+    utilize self-attention to learn their low-level context using a self-attention mechanism over the grid of inputs. By establishing spatial correspondence
+    within image channels, this design enables the ImageBrush model to attentively process features within each channel and effectively capture their interdependencies.</p>
 
-            <img src="images/fig1.jpg" alt="UNet and Cross-Attention Example" style="width:500px;height:600px;">
+    <center><img src="images/fig1.jpg" alt="UNet and Cross-Attention Example" style="width:500px;height:600px;"></center>
 
-        <p>So essentially the images are encoded, concatenated, passed through multiple transformer layers for the prompt encoder, and then finally passed through the modified
-            UNet to iteratively denoise the image. The authors also utilize a modified conditional predicted noise to accomplish this goal:</p>
+<p>So essentially the images are encoded, concatenated, passed through multiple transformer layers for the prompt encoder, and then finally passed through the modified
+    UNet to iteratively denoise the image. The authors also utilize a modified conditional predicted noise to accomplish this goal:</p>
 
-        <img src="images/cond_noise.jpg" alt="Conditional Noise Formula">
+<center><img src="images/cond_noise.jpg" alt="Conditional Noise Formula"></center>
 
-        <p>This conditioned predicted noise modifies the original predicted noise, epsilon_theta(x_t, null), (noise predicted without attending to
-            the exemplars) to more closely match the guidance signal, epsilon_theta(x_t, c), with guidance scale, w, and provided conditions, c.
-            While the conditions here are generally the exemplar images, the authors also allow for the use of multimodal
-            input such as bounding box user instructions and text descriptions to further improve the diffusion process.</p>
-    <h2>Peer-Review</h2>
+<p>This conditioned predicted noise modifies the original predicted noise, epsilon_theta(x_t, null), (noise predicted without attending to
+    the exemplars) to more closely match the guidance signal, epsilon_theta(x_t, c), with guidance scale, w, and provided conditions, c.
+    While the conditions here are generally the exemplar images, the authors also allow for the use of multimodal
+    input such as bounding box user instructions and text descriptions to further improve the diffusion process.</p>
+
+<h3>Evaluation</h3>
+
+<p>
+    The authors propose the following metrics to evaluate the image translation tasks proposed.
+    <ul>
+        <li><b>CLIP Direction Similarity:</b> This metric helps assess the agreement 
+            of the edited image with the editing instructions. This metric was used in the image manipulation task.</li>
+        <li><b>CLIP image Similarity:</b> This metric helps assess the level of 
+            consistency with the original image. This metric was used in the image manipulation task.</li>
+        <li><b>Fr&eacute;chet Inception Score (FID):</b> The FID score allows the authors
+            to evaluate the dissimilarity between the distributions of 
+            synthesized images and real images. This metric was mainly used in the exemplar-based 
+            image translation, pose transfer, and video in-painting tasks.</li>
+    </ul>
+
+    The model results for image manipulation are provided below.
+    <center><img src="images/clip_results.jpg" alt="CLIP Results"></center>
+
+    The FID scores below give an indication of the dissimilarity between the synthesized images and real images. Lower scores have been shown to correlate well with higher-quality images.
+    <center><img src="images/fid_results.jpg" alt="FID Results"></center>
+    
+</p>
+    
+<h2>Peer-Review</h2>
     <h3> Strengths and Weaknesses: </h3>
         <p>Strengths: Great results that seem to outperform SOTA models in exemplar image generation. Concise and relatively easy-to-understand paper
             The creation of the new prompt and image fidelity evaluation metrics may be important for the evaluation of future models in such a relatively new field.
-            Weaknesses: More developed/in-depth discussion about the unique aspects of the model architecture would be desirable.
+            Weaknesses: A more developed/in-depth discussion about the unique aspects of the model architecture would be desirable.
             There is relatively little discussion of the self-attention aspects of the UNet and specific unique improvements over previous work, though the results do seem strong.
-            Evaluation of the model is a little weak. There is some quantitative comparison with Instruct-Pix2Pix, yet a different comparison for TSAM and CoCosNet.
+            The evaluation of the model is a little weak. There is some quantitative comparison with Instruct-Pix2Pix, yet a different comparison for TSAM and CoCosNet.
             The authors also utilize a qualitative comparison with pix2pix and SDEdit, rather than either of the other two models they used before.
             While it showed seemingly good results this small qualitative comparison could also be very cherry-picked.
             Created a new evaluation metric but did not use it to compare to any other models
@@ -210,11 +235,11 @@
 
 
 
-<h2> Follow-Up Research</h2>
-    <p>Models blending text prompting, image-examplars, and user input are a promising step forward in image generation instructions.
-        The authors noted issues when there significant disparities between the querya nd instruction and difficulties handling intricate details,
-        which would merit some future work to improve. More work in different blends of modalities such as text, user input, and
-        images could lead to great breakgthroughs in image generation and transformation.</p>
+    <h2> Follow-Up Research</h2>
+        <p>Models blending text prompting, image-examplars, and user input are promising steps forward in image generation instructions.
+            The authors noted issues when there were significant disparities between the query and instruction and difficulties handling intricate details,
+            which would merit some future work to improve. More work in different blends of modalities such as text, user input, and
+            images could lead to great breakthroughs in image generation and transformation.</p>
 
 
 <h3>References</h3>
