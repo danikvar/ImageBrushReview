@@ -158,12 +158,12 @@
             they utilize a grid-like image as input. This grid concatenates a manipulation example and a target query. The top two items in this grid from left to right would
             be the exemplar images (E, E&#8217;); the bottom left would be the query image (I); and the last grid item would be random noise (M) that is then filled using a diffusion
             process to produce the transformed query image (I&#8217;). Essentially the authors start with a grid-like image {E, E&#8217;, I, M} and attempt to recover the image {E, E&#8217;, I, I&#8217;}.
-            <img src="images/fig2.jpg" alt="Model Architecture">
+            <img src="images/fig2.jpg" alt="Model Architecture" style="width:500px;height:600px;">
             Like other Latent Diffusion approaches the authors utilize cross-attention with a Denoising UNet to condition the input, I, on the pair of exemplar images {E, E&#8217;}.
             The authors noted however that capturing detailed information from instruction images through cross-attention alone is challenging, so the authors also
             utilize self-attention to learn their low-level context using a self-attention mechanism over the grid of inputs. By establishing spatial correspondence
             within image channels, this design enables the ImageBrush model to attentively process features within each channel and effectively capture their interdependencies.
-            <img src="images/fig1.jpg" alt="UNet and Cross-Attention Example">
+            <img src="images/fig1.jpg" alt="UNet and Cross-Attention Example" style="width:500px;height:600px;">
             So essentially the images are encoded, concatenated, passed through multiple transformer layers for the prompt encoder, and then finally passed through the modified
             UNet to iteratively denoise the image. The authors also utilize a modified conditional predicted noise to accomplish this goal:</p>
         <img src="images/cond_noise.jpg" alt="Conditional Noise Formula">
